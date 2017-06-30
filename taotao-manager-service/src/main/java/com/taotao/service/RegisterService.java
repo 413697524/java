@@ -6,4 +6,5 @@ package com.taotao.service;
 public interface RegisterService {
     String showIndex(String userName,String passWord);
     void register(String name,String password,int sex,String tel);
+    void pageHelper();
 }

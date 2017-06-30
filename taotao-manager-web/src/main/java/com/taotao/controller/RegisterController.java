@@ -1,28 +1,44 @@
 package com.taotao.controller;
 
 import com.taotao.common.pojo.TaotaoResult;
+import com.taotao.pojo.Users;
 import com.taotao.service.RegisterService;
-import com.taotao.service.impl.RegisterServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+
 
 /**
  * Created by Administrator on 2016/11/28.
  */
 @Controller
 public class RegisterController {
-//    @Autowired
-//    public RegisterService testService;
-//
-//    @RequestMapping("/test")
-//    @ResponseBody
-//    public String test(String userName,String passWord){
-//        String info = testService.showIndex(userName,passWord);
-//
-//        return info;
-//    }
+    @Autowired
+    private RegisterService registerService;
+
+    @RequestMapping(value = "/api/register")
+    @ResponseBody
+    public TaotaoResult register(@RequestBody Users users){
+        registerService.register(users.getName(),users.getPassword(),users.getSex(),users.getTel());
+//        ,@PathVariable Integer pwd
+//        ,
+//        System.out.println("----------pathVa------"+users);
+        return TaotaoResult.ok();
+    }
+
+
+
+
+
+
+
+
+    @RequestMapping("/test/pagehelper")
+    public void pagehelper(){
+
+        registerService.pageHelper();
+
+    }
 
 
 //    @RequestMapping("/register")

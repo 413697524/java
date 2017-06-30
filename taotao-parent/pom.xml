@@ -14,7 +14,8 @@
         <module>../taotao-rest</module>
         <module>../taotao-portal</module>
         <module>../taotao-hr</module>
-        <module>../taotao-generator</module>
+        <module>../taotao-sso</module>
+        <module>../taotao-search</module>
     </modules>
 
 
