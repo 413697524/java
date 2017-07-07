@@ -76,6 +76,13 @@
             <scope>provided</scope>
         </dependency>
 
+        <!--freemarker html 模板包-->
+        <dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+            <version>2.3.26-incubating</version>
+        </dependency>
+
     </dependencies>
 
 
