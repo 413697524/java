@@ -46,6 +46,7 @@ public class PictureServiceImpl implements PictureService {
 
 //        String  strings = storageClient.upload_file(picFile.getBytes(), extName, null);
             String  url = storageClient1.upload_file1(picFile.getBytes(), extName, null);
+
             url = IMAGE_SERVER_BASE_URL + url;
 //            拼接ip地址
 //        storageClient.upload_file

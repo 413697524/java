@@ -1,0 +1,27 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+.wrapper{
+    background-color: white;
+
+}
+
+.wrapper .wrapper-header{
+    background-color: rebeccapurple;
+    height: 500px;
+    font-family: Georgia;
+}
+
+.wrapper .wrapper-body{
+    background-color: hotpink;
+    height: 1200px;
+}
+
+
+.wrapper .wrapper-footer{
+    background-color: aqua;
+    height: 200px;
+}
+

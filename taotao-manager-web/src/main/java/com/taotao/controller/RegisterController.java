@@ -16,7 +16,7 @@ public class RegisterController {
     @Autowired
     private RegisterService registerService;
 
-    @RequestMapping(value = "/api/register")
+    @RequestMapping(value = "/api/register",method = RequestMethod.POST)
     @ResponseBody
     public TaotaoResult register(@RequestBody Users users){
         registerService.register(users.getName(),users.getPassword(),users.getSex(),users.getTel());

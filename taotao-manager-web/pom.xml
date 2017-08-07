@@ -77,11 +77,18 @@
         </dependency>
 
         <!--freemarker html 模板包-->
-        <dependency>
-            <groupId>org.freemarker</groupId>
-            <artifactId>freemarker</artifactId>
-            <version>2.3.26-incubating</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.freemarker</groupId>-->
+            <!--<artifactId>freemarker</artifactId>-->
+            <!--<version>2.3.26-incubating</version>-->
+        <!--</dependency>-->
+
+        <!--thymeleaf html 模板包-->
+        <!--<dependency>-->
+            <!--<groupId>org.thymeleaf</groupId>-->
+            <!--<artifactId>thymeleaf-spring4</artifactId>-->
+            <!--<version>3.0.0.RELEASE</version>-->
+        <!--</dependency>-->
 
     </dependencies>
 

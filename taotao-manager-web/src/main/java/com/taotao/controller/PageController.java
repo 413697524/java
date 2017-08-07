@@ -16,7 +16,10 @@ public class PageController {
      */
     @RequestMapping("/")
     public String showIndex(){
-        return "index";
+//        return "index";
+        return "index-fresh";
+//        return "login";
+//        return "demo";
     }
 
     /**

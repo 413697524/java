@@ -208,4 +208,8 @@
       password = #{password,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <insert id="inserUserssss" parameterType="com.taotao.pojo.Users">
+    INSERT INTO USER (tel,sex,name,password)
+    VALUE (#{tel},#{sex},#{name},#{password})
+  </insert>
 </mapper>

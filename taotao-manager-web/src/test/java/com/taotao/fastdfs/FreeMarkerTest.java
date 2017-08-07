@@ -1,6 +1,5 @@
 package com.taotao.fastdfs;
 
-import freemarker.template.Configuration;
 import org.junit.Test;
 
 /**
@@ -12,7 +11,6 @@ public class FreeMarkerTest {
     @Test
     public void testFreeMarker(){
 
-        Configuration configuration = new Configuration(Configuration.getVersion());
     }
 
 }
