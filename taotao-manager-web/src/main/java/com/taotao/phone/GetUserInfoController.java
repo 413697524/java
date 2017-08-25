@@ -1,9 +1,12 @@
 package com.taotao.phone;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.swing.tree.DefaultMutableTreeNode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,6 +31,20 @@ public class GetUserInfoController {
         return list;
 
     }
+
+//    @Autowired
+//    UserMapper userMapper;
+//
+//    @RequestMapping(value = "/api/test/aliyun/taotao")
+//    @ResponseBody
+//    private void SaveUser(){
+//        User userTest = new User();
+//        userTest.setName("ahahaha");
+//        userTest.setAge(11);
+//        userTest.setSex(1);
+//        userTest.setAddress("广东");
+//        userMapper.insert(userTest);
+//    }
 
 
 

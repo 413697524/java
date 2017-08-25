@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.*;
  */
 @Controller
 public class RegisterController {
-    @Autowired
-    private RegisterService registerService;
+//    @Autowired
+//    private RegisterService registerService;
 
     @RequestMapping(value = "/api/register",method = RequestMethod.POST)
     @ResponseBody
@@ -41,29 +41,29 @@ public class RegisterController {
     }
 
 
-//    @RequestMapping("/register")
-//    public String register(){
-//        return "register";
-//    }
+    @RequestMapping("/register")
+    public String register(){
+        return "register";
+    }
 
 
-//    @Autowired
-//    public RegisterService registerService;
-//
-//    @RequestMapping("/regisetTest")
-//    @ResponseBody
-//    public TaotaoResult registerTest(){
-//
-//        String name = "gts";
-//        String password = "123456";
-//        int sex = 1;
-//        String tel = "13631057423";
-//        registerService.register(name,password,sex,tel);
-//
-//        return TaotaoResult.ok();
-//
-//
-//    }
+    @Autowired
+    public RegisterService registerService;
+
+    @RequestMapping("/regisetTest")
+    @ResponseBody
+    public TaotaoResult registerTest(){
+
+        String name = "gts";
+        String password = "123456";
+        int sex = 1;
+        String tel = "13631057423";
+        registerService.register(name,password,sex,tel);
+
+        return TaotaoResult.ok();
+
+
+    }
 
 
 

@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.taotao.mapper.UsersMapper" >
-  <resultMap id="BaseResultMap" type="com.taotao.pojo.Users" >
+<mapper namespace="com.taotao.mapper.CurtainMapper" >
+  <resultMap id="BaseResultMap" type="com.taotao.pojo.Curtain" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="tel" property="tel" jdbcType="VARCHAR" />
-    <result column="sex" property="sex" jdbcType="INTEGER" />
-    <result column="name" property="name" jdbcType="VARCHAR" />
-    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="size" property="size" jdbcType="INTEGER" />
+    <result column="color" property="color" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -67,15 +65,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, tel, sex, name, password
+    id, size, color
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.taotao.pojo.UsersExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.taotao.pojo.CurtainExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from users
+    from curtain
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -86,85 +84,67 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from users
+    from curtain
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from users
+    delete from curtain
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.taotao.pojo.UsersExample" >
-    delete from users
+  <delete id="deleteByExample" parameterType="com.taotao.pojo.CurtainExample" >
+    delete from curtain
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.taotao.pojo.Users" >
-    insert into users (id, tel, sex, 
-      name, password)
-    values (#{id,jdbcType=INTEGER}, #{tel,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER}, 
-      #{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR})
+  <insert id="insert" parameterType="com.taotao.pojo.Curtain" >
+    insert into curtain (id, size, color
+      )
+    values (#{id,jdbcType=INTEGER}, #{size,jdbcType=INTEGER}, #{color,jdbcType=VARCHAR}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="com.taotao.pojo.Users" >
-    insert into users
+  <insert id="insertSelective" parameterType="com.taotao.pojo.Curtain" >
+    insert into curtain
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
       </if>
-      <if test="tel != null" >
-        tel,
+      <if test="size != null" >
+        size,
       </if>
-      <if test="sex != null" >
-        sex,
-      </if>
-      <if test="name != null" >
-        name,
-      </if>
-      <if test="password != null" >
-        password,
+      <if test="color != null" >
+        color,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="tel != null" >
-        #{tel,jdbcType=VARCHAR},
+      <if test="size != null" >
+        #{size,jdbcType=INTEGER},
       </if>
-      <if test="sex != null" >
-        #{sex,jdbcType=INTEGER},
-      </if>
-      <if test="name != null" >
-        #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null" >
-        #{password,jdbcType=VARCHAR},
+      <if test="color != null" >
+        #{color,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.taotao.pojo.UsersExample" resultType="java.lang.Integer" >
-    select count(*) from users
+  <select id="countByExample" parameterType="com.taotao.pojo.CurtainExample" resultType="java.lang.Integer" >
+    select count(*) from curtain
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update users
+    update curtain
     <set >
       <if test="record.id != null" >
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.tel != null" >
-        tel = #{record.tel,jdbcType=VARCHAR},
+      <if test="record.size != null" >
+        size = #{record.size,jdbcType=INTEGER},
       </if>
-      <if test="record.sex != null" >
-        sex = #{record.sex,jdbcType=INTEGER},
-      </if>
-      <if test="record.name != null" >
-        name = #{record.name,jdbcType=VARCHAR},
-      </if>
-      <if test="record.password != null" >
-        password = #{record.password,jdbcType=VARCHAR},
+      <if test="record.color != null" >
+        color = #{record.color,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -172,40 +152,30 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update users
+    update curtain
     set id = #{record.id,jdbcType=INTEGER},
-      tel = #{record.tel,jdbcType=VARCHAR},
-      sex = #{record.sex,jdbcType=INTEGER},
-      name = #{record.name,jdbcType=VARCHAR},
-      password = #{record.password,jdbcType=VARCHAR}
+      size = #{record.size,jdbcType=INTEGER},
+      color = #{record.color,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.taotao.pojo.Users" >
-    update users
+  <update id="updateByPrimaryKeySelective" parameterType="com.taotao.pojo.Curtain" >
+    update curtain
     <set >
-      <if test="tel != null" >
-        tel = #{tel,jdbcType=VARCHAR},
+      <if test="size != null" >
+        size = #{size,jdbcType=INTEGER},
       </if>
-      <if test="sex != null" >
-        sex = #{sex,jdbcType=INTEGER},
-      </if>
-      <if test="name != null" >
-        name = #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null" >
-        password = #{password,jdbcType=VARCHAR},
+      <if test="color != null" >
+        color = #{color,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.taotao.pojo.Users" >
-    update users
-    set tel = #{tel,jdbcType=VARCHAR},
-      sex = #{sex,jdbcType=INTEGER},
-      name = #{name,jdbcType=VARCHAR},
-      password = #{password,jdbcType=VARCHAR}
+  <update id="updateByPrimaryKey" parameterType="com.taotao.pojo.Curtain" >
+    update curtain
+    set size = #{size,jdbcType=INTEGER},
+      color = #{color,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>
