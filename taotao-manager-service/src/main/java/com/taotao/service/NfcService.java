@@ -8,5 +8,6 @@ import org.springframework.stereotype.Service;
  */
 public interface NfcService {
     NfcModel CreateUpdateMessage();
+    void addBook();
 
 }

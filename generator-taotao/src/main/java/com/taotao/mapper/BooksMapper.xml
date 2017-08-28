@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.taotao.mapper.BooksMapper" >
+  <resultMap id="BaseResultMap" type="com.taotao.pojo.Books" >
+    <id column="book_id" property="bookId" jdbcType="SMALLINT" />
+    <result column="book_name" property="bookName" jdbcType="CHAR" />
+    <result column="book_pic" property="bookPic" jdbcType="VARCHAR" />
+    <result column="book_author" property="bookAuthor" jdbcType="CHAR" />
+    <result column="book_pub" property="bookPub" jdbcType="CHAR" />
+    <result column="book_sort" property="bookSort" jdbcType="CHAR" />
+    <result column="book_owner" property="bookOwner" jdbcType="CHAR" />
+    <result column="book_borrower" property="bookBorrower" jdbcType="CHAR" />
+    <result column="book_borrower_time" property="bookBorrowerTime" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    book_id, book_name, book_pic, book_author, book_pub, book_sort, book_owner, book_borrower, 
+    book_borrower_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.taotao.pojo.BooksExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from books
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Short" >
+    select 
+    <include refid="Base_Column_List" />
+    from books
+    where book_id = #{bookId,jdbcType=SMALLINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short" >
+    delete from books
+    where book_id = #{bookId,jdbcType=SMALLINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.taotao.pojo.BooksExample" >
+    delete from books
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.taotao.pojo.Books" >
+    insert into books (book_id, book_name, book_pic, 
+      book_author, book_pub, book_sort, 
+      book_owner, book_borrower, book_borrower_time
+      )
+    values (#{bookId,jdbcType=SMALLINT}, #{bookName,jdbcType=CHAR}, #{bookPic,jdbcType=VARCHAR}, 
+      #{bookAuthor,jdbcType=CHAR}, #{bookPub,jdbcType=CHAR}, #{bookSort,jdbcType=CHAR}, 
+      #{bookOwner,jdbcType=CHAR}, #{bookBorrower,jdbcType=CHAR}, #{bookBorrowerTime,jdbcType=DATE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.taotao.pojo.Books" >
+    insert into books
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="bookId != null" >
+        book_id,
+      </if>
+      <if test="bookName != null" >
+        book_name,
+      </if>
+      <if test="bookPic != null" >
+        book_pic,
+      </if>
+      <if test="bookAuthor != null" >
+        book_author,
+      </if>
+      <if test="bookPub != null" >
+        book_pub,
+      </if>
+      <if test="bookSort != null" >
+        book_sort,
+      </if>
+      <if test="bookOwner != null" >
+        book_owner,
+      </if>
+      <if test="bookBorrower != null" >
+        book_borrower,
+      </if>
+      <if test="bookBorrowerTime != null" >
+        book_borrower_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="bookId != null" >
+        #{bookId,jdbcType=SMALLINT},
+      </if>
+      <if test="bookName != null" >
+        #{bookName,jdbcType=CHAR},
+      </if>
+      <if test="bookPic != null" >
+        #{bookPic,jdbcType=VARCHAR},
+      </if>
+      <if test="bookAuthor != null" >
+        #{bookAuthor,jdbcType=CHAR},
+      </if>
+      <if test="bookPub != null" >
+        #{bookPub,jdbcType=CHAR},
+      </if>
+      <if test="bookSort != null" >
+        #{bookSort,jdbcType=CHAR},
+      </if>
+      <if test="bookOwner != null" >
+        #{bookOwner,jdbcType=CHAR},
+      </if>
+      <if test="bookBorrower != null" >
+        #{bookBorrower,jdbcType=CHAR},
+      </if>
+      <if test="bookBorrowerTime != null" >
+        #{bookBorrowerTime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.taotao.pojo.BooksExample" resultType="java.lang.Integer" >
+    select count(*) from books
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update books
+    <set >
+      <if test="record.bookId != null" >
+        book_id = #{record.bookId,jdbcType=SMALLINT},
+      </if>
+      <if test="record.bookName != null" >
+        book_name = #{record.bookName,jdbcType=CHAR},
+      </if>
+      <if test="record.bookPic != null" >
+        book_pic = #{record.bookPic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bookAuthor != null" >
+        book_author = #{record.bookAuthor,jdbcType=CHAR},
+      </if>
+      <if test="record.bookPub != null" >
+        book_pub = #{record.bookPub,jdbcType=CHAR},
+      </if>
+      <if test="record.bookSort != null" >
+        book_sort = #{record.bookSort,jdbcType=CHAR},
+      </if>
+      <if test="record.bookOwner != null" >
+        book_owner = #{record.bookOwner,jdbcType=CHAR},
+      </if>
+      <if test="record.bookBorrower != null" >
+        book_borrower = #{record.bookBorrower,jdbcType=CHAR},
+      </if>
+      <if test="record.bookBorrowerTime != null" >
+        book_borrower_time = #{record.bookBorrowerTime,jdbcType=DATE},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update books
+    set book_id = #{record.bookId,jdbcType=SMALLINT},
+      book_name = #{record.bookName,jdbcType=CHAR},
+      book_pic = #{record.bookPic,jdbcType=VARCHAR},
+      book_author = #{record.bookAuthor,jdbcType=CHAR},
+      book_pub = #{record.bookPub,jdbcType=CHAR},
+      book_sort = #{record.bookSort,jdbcType=CHAR},
+      book_owner = #{record.bookOwner,jdbcType=CHAR},
+      book_borrower = #{record.bookBorrower,jdbcType=CHAR},
+      book_borrower_time = #{record.bookBorrowerTime,jdbcType=DATE}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.taotao.pojo.Books" >
+    update books
+    <set >
+      <if test="bookName != null" >
+        book_name = #{bookName,jdbcType=CHAR},
+      </if>
+      <if test="bookPic != null" >
+        book_pic = #{bookPic,jdbcType=VARCHAR},
+      </if>
+      <if test="bookAuthor != null" >
+        book_author = #{bookAuthor,jdbcType=CHAR},
+      </if>
+      <if test="bookPub != null" >
+        book_pub = #{bookPub,jdbcType=CHAR},
+      </if>
+      <if test="bookSort != null" >
+        book_sort = #{bookSort,jdbcType=CHAR},
+      </if>
+      <if test="bookOwner != null" >
+        book_owner = #{bookOwner,jdbcType=CHAR},
+      </if>
+      <if test="bookBorrower != null" >
+        book_borrower = #{bookBorrower,jdbcType=CHAR},
+      </if>
+      <if test="bookBorrowerTime != null" >
+        book_borrower_time = #{bookBorrowerTime,jdbcType=DATE},
+      </if>
+    </set>
+    where book_id = #{bookId,jdbcType=SMALLINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.taotao.pojo.Books" >
+    update books
+    set book_name = #{bookName,jdbcType=CHAR},
+      book_pic = #{bookPic,jdbcType=VARCHAR},
+      book_author = #{bookAuthor,jdbcType=CHAR},
+      book_pub = #{bookPub,jdbcType=CHAR},
+      book_sort = #{bookSort,jdbcType=CHAR},
+      book_owner = #{bookOwner,jdbcType=CHAR},
+      book_borrower = #{bookBorrower,jdbcType=CHAR},
+      book_borrower_time = #{bookBorrowerTime,jdbcType=DATE}
+    where book_id = #{bookId,jdbcType=SMALLINT}
+  </update>
+</mapper>

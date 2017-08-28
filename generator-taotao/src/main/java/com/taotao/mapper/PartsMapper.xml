@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.taotao.mapper.PartsMapper" >
+  <resultMap id="BaseResultMap" type="com.taotao.pojo.Parts" >
+    <id column="part_id" property="partId" jdbcType="SMALLINT" />
+    <result column="part_name" property="partName" jdbcType="VARCHAR" />
+    <result column="part_mail" property="partMail" jdbcType="VARCHAR" />
+    <result column="part_pass" property="partPass" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    part_id, part_name, part_mail, part_pass
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.taotao.pojo.PartsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from parts
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Short" >
+    select 
+    <include refid="Base_Column_List" />
+    from parts
+    where part_id = #{partId,jdbcType=SMALLINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short" >
+    delete from parts
+    where part_id = #{partId,jdbcType=SMALLINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.taotao.pojo.PartsExample" >
+    delete from parts
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.taotao.pojo.Parts" >
+    insert into parts (part_id, part_name, part_mail, 
+      part_pass)
+    values (#{partId,jdbcType=SMALLINT}, #{partName,jdbcType=VARCHAR}, #{partMail,jdbcType=VARCHAR}, 
+      #{partPass,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.taotao.pojo.Parts" >
+    insert into parts
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="partId != null" >
+        part_id,
+      </if>
+      <if test="partName != null" >
+        part_name,
+      </if>
+      <if test="partMail != null" >
+        part_mail,
+      </if>
+      <if test="partPass != null" >
+        part_pass,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="partId != null" >
+        #{partId,jdbcType=SMALLINT},
+      </if>
+      <if test="partName != null" >
+        #{partName,jdbcType=VARCHAR},
+      </if>
+      <if test="partMail != null" >
+        #{partMail,jdbcType=VARCHAR},
+      </if>
+      <if test="partPass != null" >
+        #{partPass,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.taotao.pojo.PartsExample" resultType="java.lang.Integer" >
+    select count(*) from parts
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update parts
+    <set >
+      <if test="record.partId != null" >
+        part_id = #{record.partId,jdbcType=SMALLINT},
+      </if>
+      <if test="record.partName != null" >
+        part_name = #{record.partName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.partMail != null" >
+        part_mail = #{record.partMail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.partPass != null" >
+        part_pass = #{record.partPass,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update parts
+    set part_id = #{record.partId,jdbcType=SMALLINT},
+      part_name = #{record.partName,jdbcType=VARCHAR},
+      part_mail = #{record.partMail,jdbcType=VARCHAR},
+      part_pass = #{record.partPass,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.taotao.pojo.Parts" >
+    update parts
+    <set >
+      <if test="partName != null" >
+        part_name = #{partName,jdbcType=VARCHAR},
+      </if>
+      <if test="partMail != null" >
+        part_mail = #{partMail,jdbcType=VARCHAR},
+      </if>
+      <if test="partPass != null" >
+        part_pass = #{partPass,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where part_id = #{partId,jdbcType=SMALLINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.taotao.pojo.Parts" >
+    update parts
+    set part_name = #{partName,jdbcType=VARCHAR},
+      part_mail = #{partMail,jdbcType=VARCHAR},
+      part_pass = #{partPass,jdbcType=VARCHAR}
+    where part_id = #{partId,jdbcType=SMALLINT}
+  </update>
+</mapper>
